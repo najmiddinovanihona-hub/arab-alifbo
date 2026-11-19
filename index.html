@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#233a31">
+<title>Arab harflari doskasi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Nunito:wght@500;700;800;900&display=swap">
+<style>
+/* Layout: one phone column — header + mode switch, letter card, form tabs, framed slate board with chalk tray, controls, alphabet strip */
+:root{
+  --bg:#ecefe8; --bg2:#e2e8df; --surface:#fbfcf9; --fg:#1b2822; --muted:#5f6d66; --line:#d3dbd4;
+  --accent:#1d7656; --accent-soft:#d9ece3; --accent-fg:#ffffff; --gold:#c38412; --gold-soft:#f6e7c4;
+  --board:#233a31; --board2:#1a2d25; --wood1:#8a6239; --wood2:#5c3f22; --chalk:#f5f2e7; --ink:#ffd45c;
+  --f-ar:"Amiri","Noto Naskh Arabic","Traditional Arabic",serif;
+  --f-ui:"Nunito","Segoe UI",system-ui,sans-serif;
+  --shadow:0 1px 2px rgba(20,40,30,.06),0 6px 20px rgba(20,40,30,.08);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1713; --bg2:#131d18; --surface:#18231e; --fg:#e8efea; --muted:#98a89f; --line:#2a3832;
+  --accent:#43b88c; --accent-soft:#1d3a2f; --accent-fg:#0c1510; --gold:#e8b04a; --gold-soft:#3a2f17;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1713; --bg2:#131d18; --surface:#18231e; --fg:#e8efea; --muted:#98a89f; --line:#2a3832;
+  --accent:#43b88c; --accent-soft:#1d3a2f; --accent-fg:#0c1510; --gold:#e8b04a; --gold-soft:#3a2f17;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35); color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);background-image:radial-gradient(120% 60% at 50% 0%,var(--bg2),var(--bg) 70%);color:var(--fg);font-family:var(--f-ui);font-size:15px;min-height:100%;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 24px}
+button{font:inherit;color:inherit}
+.app{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;flex-direction:column;line-height:1.1}
+.brand b{font-weight:900;font-size:19px;letter-spacing:-.01em}
+.brand span{font-size:12px;color:var(--muted)}
+.brand-ar{font-family:var(--f-ar);font-size:26px;color:var(--gold);line-height:1}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px;gap:4px;box-shadow:var(--shadow)}
+.seg button{border:0;background:transparent;padding:9px 6px;border-radius:10px;font-weight:800;cursor:pointer;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg)}
+.progress{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.bar{flex:1;height:6px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:99px;transition:width .5s}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:12px 14px;display:flex;gap:14px;align-items:center;box-shadow:var(--shadow)}
+.glyph{font-family:var(--f-ar);font-size:60px;line-height:1;min-width:82px;height:82px;display:grid;place-items:center;color:var(--accent);background:var(--accent-soft);border-radius:16px;padding-bottom:10px}
+.glyph.word{font-size:40px}
+.info{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.name{font-weight:900;font-size:20px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.name .ar{font-family:var(--f-ar);font-weight:400;font-size:22px;color:var(--muted)}
+.sound{color:var(--muted);font-size:14px;line-height:1.35}
+.sound b{color:var(--fg)}
+.listen{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;border:0;background:var(--gold-soft);color:var(--fg);font-weight:800;font-size:13px;padding:6px 12px 6px 10px;border-radius:999px;cursor:pointer;margin-top:2px}
+.listen svg{width:16px;height:16px;color:var(--gold)}
+
+.forms{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.form{background:var(--surface);border:1px solid var(--line);border-radius:14px;text-align:center;padding:2px 2px 6px;cursor:pointer;display:flex;flex-direction:column;align-items:center;transition:transform .15s}
+.form .g{font-family:var(--f-ar);font-size:30px;line-height:1.55}
+.form .l{font-size:11px;color:var(--muted);font-weight:700}
+.form .st{font-size:10px;color:var(--gold);height:12px;letter-spacing:1px}
+.form[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
+.form[aria-pressed="true"] .l{color:var(--accent)}
+.form:active{transform:scale(.97)}
+
+.frame{background:linear-gradient(160deg,var(--wood1),var(--wood2));padding:9px 9px 0;border-radius:18px;box-shadow:0 10px 26px rgba(30,20,10,.28),inset 0 1px 0 rgba(255,255,255,.18)}
+.board{position:relative;width:100%;aspect-ratio:1/1;max-width:100%;background:radial-gradient(120% 90% at 30% 15%,var(--board),var(--board2));border-radius:10px;overflow:hidden;box-shadow:inset 0 0 0 2px rgba(0,0,0,.25),inset 0 0 40px rgba(0,0,0,.35)}
+.board svg,.board canvas{position:absolute;inset:0;width:100%;height:100%}
+.board canvas{touch-action:none;cursor:crosshair}
+.board canvas.layer{pointer-events:none}
+.tray{height:20px;display:flex;align-items:center;gap:10px;padding:0 14px}
+.tray i{display:block;height:6px;border-radius:3px;background:var(--chalk);opacity:.9;box-shadow:0 1px 0 rgba(0,0,0,.25)}
+.tray i:nth-child(1){width:34px}.tray i:nth-child(2){width:20px;background:#ffd45c}.tray i:nth-child(3){width:26px;opacity:.6}
+.hint{position:absolute;left:10px;right:10px;bottom:10px;text-align:center;color:rgba(245,242,231,.8);font-size:13px;font-weight:700;pointer-events:none;transition:opacity .3s}
+.result{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(12,22,17,.9);color:var(--chalk);border-radius:14px;padding:10px 12px;text-align:center;font-weight:800;pointer-events:none;border:1px solid rgba(255,212,92,.3)}
+.result .stars{font-size:24px;color:#ffd45c;letter-spacing:5px}
+.burst{position:absolute;left:50%;top:45%;color:#ffd45c;font-size:20px;pointer-events:none;animation:fly 1s ease-out forwards}
+@keyframes fly{from{transform:translate(-50%,-50%) scale(.4);opacity:1}to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.1);opacity:0}}
+
+.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--fg);font-weight:800;padding:12px 6px;border-radius:14px;cursor:pointer;box-shadow:var(--shadow)}
+.btn svg{width:17px;height:17px;flex:none}
+.btn.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible,.listen:focus-visible,.chip:focus-visible,.form:focus-visible,.seg button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.nav .btn{padding:9px 14px}
+.nav .count{color:var(--muted);font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;text-align:center}
+
+.strip{display:flex;flex-direction:row-reverse;gap:6px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:thin}
+.chip{flex:0 0 auto;min-width:46px;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:2px 8px 5px;cursor:pointer;display:flex;flex-direction:column;align-items:center}
+.chip .g{font-family:var(--f-ar);font-size:24px;line-height:1.5}
+.chip .s{display:flex;gap:2px;height:6px;align-items:center;font-size:9px;color:var(--gold);letter-spacing:1px}
+.chip .s i{width:5px;height:5px;border-radius:50%;background:var(--line)}
+.chip .s i.on{background:var(--gold)}
+.chip[aria-current="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
+.tip{font-size:12.5px;color:var(--muted);text-align:center;line-height:1.45;margin:0}
+@media (prefers-reduced-motion: reduce){.hint,.bar i{transition:none}.burst{display:none}}
+</style>
+
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .06 0"/></filter>
+    <filter id="chalky"><feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" seed="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/></filter>
+  </defs>
+</svg>
+
+<div class="app">
+  <div class="top">
+    <div class="brand"><b>Harf mashqi</b><span>Arab yozuvini doskada o‘rganamiz</span></div>
+    <div class="brand-ar" aria-hidden="true">الحروف</div>
+  </div>
+
+  <div class="seg" role="group" aria-label="Bo‘lim">
+    <button id="mLetters" type="button" aria-pressed="true">Harflar</button>
+    <button id="mWords" type="button" aria-pressed="false">So‘zlar</button>
+  </div>
+
+  <div class="progress"><div class="bar"><i id="bar"></i></div><span id="progTxt">0 / 112</span></div>
+
+  <div class="card">
+    <div class="glyph" id="glyph">ب</div>
+    <div class="info">
+      <div class="name"><span id="uzName">Bo</span><span class="ar" id="arName">باء</span></div>
+      <div class="sound" id="sound"></div>
+      <button class="listen" id="listen" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>Tinglash</button>
+    </div>
+  </div>
+
+  <div class="forms" id="forms"></div>
+
+  <div class="frame">
+    <div class="board" id="board">
+      <svg id="svg" viewBox="0 0 300 300" aria-hidden="true">
+        <rect width="300" height="300" filter="url(#grain)"/>
+        <line id="baseLine" x1="12" y1="200" x2="288" y2="200" stroke="rgba(245,242,231,.2)" stroke-width="1.5"/>
+        <line id="topLine" x1="12" y1="110" x2="288" y2="110" stroke="rgba(245,242,231,.08)" stroke-width="1" stroke-dasharray="4 6"/>
+        <g id="guide"></g>
+        <g id="demo" filter="url(#chalky)"></g>
+      </svg>
+      <canvas id="gcv" class="layer"></canvas>
+      <canvas id="dcv" class="layer"></canvas>
+      <canvas id="cv" aria-label="Yozish doskasi"></canvas>
+      <div class="hint" id="hint"></div>
+      <div class="result" id="result" hidden></div>
+    </div>
+    <div class="tray" aria-hidden="true"><i></i><i></i><i></i></div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="show" type="button"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l12-7.5z"/></svg>Ko‘rsat</button>
+    <button class="btn" id="clear" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20H9l-5-5 10-10 7 7-7 7"/></svg>Tozalash</button>
+    <button class="btn primary" id="check" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>Tekshir</button>
+  </div>
+
+  <div class="nav">
+    <button class="btn" id="prev" type="button">→ Oldingi</button>
+    <span class="count" id="count">2 / 28</span>
+    <button class="btn" id="next" type="button">Keyingi ←</button>
+  </div>
+
+  <div class="strip" id="strip"></div>
+  <p class="tip" id="tip"></p>
+</div>
+
+<script>
+// ---- Stroke shapes for isolated letters (viewBox 300x300, baseline y=200). Each path runs in writing direction.
+const B = {
+  ba:  "M235 150 C238 175 230 200 205 200 L95 200 C70 200 62 185 65 150",
+  ha:  "M108 112 C140 100 180 104 205 116 C160 135 112 168 112 212 C112 258 176 268 226 244",
+  dal: "M135 125 C155 140 185 170 190 192 C192 204 180 204 118 204",
+  ra:  "M190 160 C196 200 176 246 108 256",
+  sin: "M252 160 C252 200 226 200 223 166 C223 200 196 200 193 166 C196 216 186 256 130 256 C94 256 80 236 86 205",
+  sad: "M172 198 C178 150 256 150 250 186 C248 198 230 198 172 198 C160 222 150 256 104 256 C74 256 64 236 70 205",
+  ta:  "M110 200 C122 150 250 150 245 186 C243 200 225 200 110 200",
+  ayn: "M200 115 C185 95 150 100 150 125 C150 150 185 160 205 158 C150 176 118 200 124 230 C130 266 190 266 226 245",
+  fa:  "M215 165 C200 165 195 145 210 135 C228 125 240 145 235 165 C232 200 215 200 195 200 L80 200 C65 200 60 190 62 170",
+  qaf: "M200 160 C185 160 180 140 195 130 C213 120 225 140 220 165 C220 230 180 260 140 255 C105 250 95 225 100 195",
+  nun: "M240 165 C245 230 210 256 160 256 C110 256 90 230 92 175",
+  ya:  "M222 140 C190 150 176 166 200 180 C230 195 246 202 240 222 C230 256 150 262 110 246 C86 236 80 216 95 196"
+};
+const L = [
+ {c:"ا",n:"Alif",ar:"ألف",con:0,s:"O‘zi tovush bermaydi — cho‘ziq <b>«aa»</b> uchun tayanch harf.",p:["M150 70 L150 205"],d:[]},
+ {c:"ب",n:"Bo",ar:"باء",con:1,s:"<b>b</b> — «bola» so‘zidagidek.",p:[B.ba],d:[[150,232]]},
+ {c:"ت",n:"To",ar:"تاء",con:1,s:"<b>t</b> — «tosh» so‘zidagidek.",p:[B.ba],d:[[138,170],[162,170]]},
+ {c:"ث",n:"So",ar:"ثاء",con:1,s:"<b>s</b>, lekin til uchi tishlar orasida (inglizcha «think»).",p:[B.ba],d:[[136,172],[164,172],[150,150]]},
+ {c:"ج",n:"Jim",ar:"جيم",con:1,s:"<b>j</b> — «jo‘ja» so‘zidagidek.",p:[B.ha],d:[[160,226]]},
+ {c:"ح",n:"Ha",ar:"حاء",con:1,s:"Kuchli <b>h</b> — bo‘g‘izdan, xirillamasdan.",p:[B.ha],d:[]},
+ {c:"خ",n:"Xo",ar:"خاء",con:1,s:"<b>x</b> — «xona» so‘zidagidek.",p:[B.ha],d:[[152,80]]},
+ {c:"د",n:"Dol",ar:"دال",con:0,s:"<b>d</b> — «dala» so‘zidagidek.",p:[B.dal],d:[]},
+ {c:"ذ",n:"Zol",ar:"ذال",con:0,s:"<b>z</b>, til uchi tishlar orasida (inglizcha «this»).",p:[B.dal],d:[[132,98]]},
+ {c:"ر",n:"Ro",ar:"راء",con:0,s:"<b>r</b> — «rang» so‘zidagidek.",p:[B.ra],d:[]},
+ {c:"ز",n:"Zay",ar:"زاي",con:0,s:"<b>z</b> — «zar» so‘zidagidek.",p:[B.ra],d:[[188,130]]},
+ {c:"س",n:"Sin",ar:"سين",con:1,s:"<b>s</b> — «suv» so‘zidagidek.",p:[B.sin],d:[]},
+ {c:"ش",n:"Shin",ar:"شين",con:1,s:"<b>sh</b> — «shahar» so‘zidagidek.",p:[B.sin],d:[[208,130],[236,130],[222,110]]},
+ {c:"ص",n:"Sod",ar:"صاد",con:1,s:"Qalin, yo‘g‘on <b>s</b>.",p:[B.sad],d:[]},
+ {c:"ض",n:"Zod",ar:"ضاد",con:1,s:"Qalin <b>d</b> (bizda ko‘pincha «z» deb o‘qiladi).",p:[B.sad],d:[[212,135]]},
+ {c:"ط",n:"To",ar:"طاء",con:1,s:"Qalin, yo‘g‘on <b>t</b>.",p:[B.ta,"M168 72 L168 196"],d:[]},
+ {c:"ظ",n:"Zo",ar:"ظاء",con:1,s:"Qalin <b>z</b>, til tishlar orasida.",p:[B.ta,"M168 72 L168 196"],d:[[212,138]]},
+ {c:"ع",n:"Ayn",ar:"عين",con:1,s:"Bo‘g‘iz tovushi — «ma<b>’</b>no»dagi tutuq kabi.",p:[B.ayn],d:[]},
+ {c:"غ",n:"G‘ayn",ar:"غين",con:1,s:"<b>g‘</b> — «g‘isht» so‘zidagidek.",p:[B.ayn],d:[[176,76]]},
+ {c:"ف",n:"Fa",ar:"فاء",con:1,s:"<b>f</b> — «fil» so‘zidagidek.",p:[B.fa],d:[[212,102]]},
+ {c:"ق",n:"Qof",ar:"قاف",con:1,s:"<b>q</b> — «qor» so‘zidagidek.",p:[B.qaf],d:[[190,96],[218,96]]},
+ {c:"ك",n:"Kof",ar:"كاف",con:1,s:"<b>k</b> — «kitob» so‘zidagidek.",p:["M212 75 L212 186 C212 200 202 202 182 202 L92 202 C70 202 62 190 65 165","M170 140 C146 134 140 160 166 160"],d:[]},
+ {c:"ل",n:"Lom",ar:"لام",con:1,s:"<b>l</b> — «lola» so‘zidagidek.",p:["M200 70 L200 200 C200 250 170 265 130 262 C95 258 85 235 90 205"],d:[]},
+ {c:"م",n:"Mim",ar:"ميم",con:1,s:"<b>m</b> — «makon» so‘zidagidek.",p:["M172 186 C160 160 190 150 205 165 C216 180 200 196 172 192 C158 196 150 204 146 220 L142 266"],d:[]},
+ {c:"ن",n:"Nun",ar:"نون",con:1,s:"<b>n</b> — «non» so‘zidagidek.",p:[B.nun],d:[[166,150]]},
+ {c:"ه",n:"Ha",ar:"هاء",con:1,s:"Yumshoq <b>h</b> — «hovli» so‘zidagidek.",p:["M176 140 C210 145 230 180 216 200 C200 215 160 210 150 190 C140 170 155 140 176 140"],d:[]},
+ {c:"و",n:"Vov",ar:"واو",con:0,s:"<b>v</b> yoki cho‘ziq <b>«uu»</b>.",p:["M200 180 C185 180 178 160 192 150 C210 140 225 160 220 185 C215 225 180 250 120 256"],d:[]},
+ {c:"ي",n:"Yo",ar:"ياء",con:1,s:"<b>y</b> yoki cho‘ziq <b>«ii»</b>.",p:[B.ya],d:[[152,280],[180,280]]}
+];
+// ---- Practice words: [arabic, reading, meaning]
+const W = [
+ ["باب","baab","eshik"],["بيت","bayt","uy"],["أب","ab","ota"],["أم","umm","ona"],["يد","yad","qo‘l"],
+ ["ورد","ward","gul"],["نور","nuur","nur"],["درس","dars","dars"],["قلم","qalam","qalam"],["كتاب","kitaab","kitob"],
+ ["ماء","maa’","suv"],["شمس","shams","quyosh"],["قمر","qamar","oy"],["بحر","bahr","dengiz"],["ولد","walad","o‘g‘il bola"],
+ ["بنت","bint","qiz bola"],["خبز","xubz","non"],["جمل","jamal","tuya"],["كلب","kalb","it"],["عين","‘ayn","ko‘z"],
+ ["علم","‘ilm","ilm"],["تفاح","tuffaah","olma"],["صديق","sadiiq","do‘st"],["سلام","salaam","tinchlik, salom"]
+];
+const FORMS=["Alohida","Boshida","O‘rtada","Oxirida"], T="ـ", NS="http://www.w3.org/2000/svg";
+const formsOf=l=>l.con?[l.c,l.c+T,T+l.c+T,T+l.c]:[l.c,l.c,T+l.c,T+l.c];
+
+const $=id=>document.getElementById(id);
+const guide=$("guide"), demo=$("demo"), cv=$("cv"), ctx=cv.getContext("2d");
+const gcv=$("gcv"), gctx=gcv.getContext("2d"), dcv=$("dcv"), dctx=dcv.getContext("2d");
+let glyphSpec=null;
+function fade(els,op,secs){els.forEach(e=>{e.style.transition=secs?`opacity ${secs}s`:"none";e.style.opacity=op})}
+const G=()=>[guide,gcv], D=()=>[demo,dcv];
+function glyphFont(){return `700 ${glyphSpec.size}px Amiri, serif`}
+function paintGlyphGuide(){
+  gctx.setTransform(1,0,0,1,0,0); gctx.clearRect(0,0,gcv.width,gcv.height);
+  if(!glyphMode||!glyphSpec)return;
+  gctx.setTransform(scale,0,0,scale,0,0); gctx.font=glyphFont(); gctx.direction="rtl"; gctx.textAlign="center";
+  gctx.fillStyle="rgba(245,242,231,.13)"; gctx.fillText(glyphSpec.text,glyphSpec.x,glyphSpec.y);
+  gctx.setLineDash([5,5]); gctx.lineWidth=1.6; gctx.lineJoin="round"; gctx.strokeStyle="rgba(245,242,231,.6)";
+  gctx.strokeText(glyphSpec.text,glyphSpec.x,glyphSpec.y); gctx.setLineDash([]);
+}
+function paintGlyphDemo(revealX){
+  dctx.setTransform(1,0,0,1,0,0); dctx.clearRect(0,0,dcv.width,dcv.height);
+  if(revealX==null)return;
+  dctx.setTransform(scale,0,0,scale,0,0); dctx.save(); dctx.beginPath(); dctx.rect(revealX,0,300-revealX,300); dctx.clip();
+  dctx.font=glyphFont(); dctx.direction="rtl"; dctx.textAlign="center"; dctx.fillStyle="#f5f2e7";
+  dctx.shadowColor="rgba(245,242,231,.35)"; dctx.shadowBlur=4*scale; dctx.fillText(glyphSpec.text,glyphSpec.x,glyphSpec.y); dctx.restore();
+}
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+let mode="L", idx=1, form=0, widx=0;
+let samples=[], glyphMode=false, userPts=[], strokes=[], drawing=false, last=null, scale=1, animToken=0;
+
+let stars={}; try{stars=JSON.parse(localStorage.getItem("arab-stars-v2")||"{}")}catch(e){}
+function saveStars(){try{localStorage.setItem("arab-stars-v2",JSON.stringify(stars))}catch(e){}}
+const key=()=>mode==="L"?L[idx].c+"|"+form:"w|"+W[widx][0];
+
+function el(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);parent&&parent.appendChild(e);return e}
+
+// ---- Strip (letters or words)
+function buildStrip(){
+  const strip=$("strip"); strip.innerHTML="";
+  const items=mode==="L"?L.map(l=>l.c):W.map(w=>w[0]);
+  items.forEach((t,i)=>{const b=document.createElement("button");b.className="chip";b.type="button";b.id="chip"+i;
+    b.innerHTML=`<span class="g">${t}</span><span class="s"></span>`;b.onclick=()=>{mode==="L"?(idx=i,form=0):widx=i;render()};strip.appendChild(b)});
+  paintStars();
+}
+function paintStars(){
+  if(mode==="L") L.forEach((l,i)=>{const s=$("chip"+i);if(s)s.querySelector(".s").innerHTML=[0,1,2,3].map(f=>`<i class="${stars[l.c+"|"+f]?"on":""}"></i>`).join("")});
+  else W.forEach((w,i)=>{const s=$("chip"+i);if(s)s.querySelector(".s").textContent="★".repeat(stars["w|"+w[0]]||0)});
+  const tot=mode==="L"?L.length*4:W.length, done=mode==="L"?Object.keys(stars).filter(k=>!k.startsWith("w|")&&stars[k]).length:Object.keys(stars).filter(k=>k.startsWith("w|")&&stars[k]).length;
+  $("bar").style.width=(done/tot*100)+"%"; $("progTxt").textContent=`${done} / ${tot} ${mode==="L"?"shakl":"so‘z"}`;
+}
+
+// ---- Render current item
+function render(){
+  $("mLetters").setAttribute("aria-pressed",mode==="L"); $("mWords").setAttribute("aria-pressed",mode==="W");
+  if(mode==="L"){
+    const l=L[idx], f=formsOf(l);
+    $("glyph").className="glyph"; $("glyph").textContent=f[form]; $("uzName").textContent=l.n; $("arName").textContent=l.ar; $("sound").innerHTML=l.s;
+    $("count").textContent=`${idx+1} / ${L.length} · ${FORMS[form]}`;
+    $("forms").hidden=false;
+    $("forms").innerHTML=FORMS.map((t,k)=>`<button class="form" type="button" aria-pressed="${k===form}" data-f="${k}"><span class="g">${f[k]}</span><span class="l">${t}</span><span class="st">${"★".repeat(stars[l.c+"|"+k]||0)}</span></button>`).join("");
+    $("forms").querySelectorAll(".form").forEach(b=>b.onclick=()=>{form=+b.dataset.f;render()});
+    $("tip").innerHTML="Arab yozuvi o‘ngdan chapga yoziladi. Sariq raqam qayerdan boshlashni, o‘qcha yo‘nalishni ko‘rsatadi. <b>ـ</b> chizig‘i — qo‘shni harfga ulanadigan joy.";
+    if(f[form]===l.c) buildStrokeGuide(l); else buildGlyphGuide(f[form],false);
+  } else {
+    const w=W[widx];
+    $("glyph").className="glyph word"; $("glyph").textContent=w[0]; $("uzName").textContent=w[2][0].toUpperCase()+w[2].slice(1); $("arName").textContent="";
+    $("sound").innerHTML=`O‘qilishi: <b>${w[1]}</b><br><span style="font-family:var(--f-ar);font-size:18px">${Array.from(w[0]).join(" + ")}</span>`;
+    $("count").textContent=`${widx+1} / ${W.length}`;
+    $("forms").hidden=true;
+    $("tip").innerHTML="So‘zni o‘ngdan boshlab, harflarni uzmasdan yozing. Nuqtalarni oxirida qo‘ying.";
+    buildGlyphGuide(w[0],true);
+  }
+  document.querySelectorAll(".chip").forEach((c,k)=>c.setAttribute("aria-current",k===(mode==="L"?idx:widx)));
+  const ch=$("chip"+(mode==="L"?idx:widx)); ch&&ch.scrollIntoView({block:"nearest",inline:"center",behavior:reduce?"auto":"smooth"});
+  clearInk(); playDemo();
+}
+
+// ---- Guide A: hand-drawn strokes (isolated letters)
+function buildStrokeGuide(l){
+  glyphMode=false; guide.innerHTML=""; samples=[]; paintGlyphGuide();
+  l.p.forEach((d,k)=>{
+    el("path",{d,fill:"none",stroke:"rgba(245,242,231,.13)","stroke-width":24,"stroke-linecap":"round","stroke-linejoin":"round"},guide);
+    const p=el("path",{d,fill:"none",stroke:"rgba(245,242,231,.6)","stroke-width":2.5,"stroke-dasharray":"7 8","stroke-linecap":"round"},guide);
+    const len=p.getTotalLength();
+    for(let s=0;s<=len;s+=5){const q=p.getPointAtLength(s);samples.push([q.x,q.y])}
+    const a=p.getPointAtLength(0), b=p.getPointAtLength(Math.min(26,len)), c=p.getPointAtLength(Math.min(18,len));
+    marker(a.x,a.y,Math.atan2(b.y-c.y,b.x-c.x)*180/Math.PI,b.x,b.y,k+1);
+  });
+  l.d.forEach(([x,y])=>{el("circle",{cx:x,cy:y,r:9,fill:"rgba(245,242,231,.13)",stroke:"rgba(245,242,231,.6)","stroke-width":2,"stroke-dasharray":"4 4"},guide);
+    for(let k=0;k<4;k++)samples.push([x,y])});
+  demoSpec={type:"stroke",l};
+}
+function marker(x,y,ang,ax,ay,n){
+  el("polygon",{points:"-6,-6 7,0 -6,6",fill:"#ffd45c",opacity:.95,transform:`translate(${ax} ${ay}) rotate(${ang})`},guide);
+  el("circle",{cx:x,cy:y,r:10,fill:"#ffd45c"},guide);
+  const t=el("text",{x,y:y+4.5,"text-anchor":"middle","font-size":13,"font-weight":900,fill:"#233a31","font-family":"Nunito, sans-serif"},guide);t.textContent=n;
+}
+
+// ---- Guide B: font glyph (letter forms and words) drawn as a faint, dashed outline
+const off=document.createElement("canvas"); off.width=off.height=300; const octx=off.getContext("2d",{willReadFrequently:true});
+let demoSpec=null;
+function layout(text,isWord){
+  let size=100; const set=()=>{octx.font=`700 ${size}px Amiri`;octx.direction="rtl";octx.textAlign="center";octx.textBaseline="alphabetic"};
+  set(); let m=octx.measureText(text);
+  const w=m.actualBoundingBoxLeft+m.actualBoundingBoxRight||m.width, h=m.actualBoundingBoxAscent+m.actualBoundingBoxDescent;
+  size=Math.min((isWord?262:240)/w*100, (isWord?190:200)/h*100, isWord?230:330);
+  set(); m=octx.measureText(text);
+  const y=150+(m.actualBoundingBoxAscent-m.actualBoundingBoxDescent)/2;
+  const x=150+(m.actualBoundingBoxLeft-m.actualBoundingBoxRight)/2;
+  return {size,x,y};
+}
+function buildGlyphGuide(text,isWord){
+  glyphMode=true; guide.innerHTML=""; samples=[];
+  const {size,x,y}=layout(text,isWord);
+  octx.clearRect(0,0,300,300); octx.fillStyle="#000"; octx.fillText(text,x,y);
+  const img=octx.getImageData(0,0,300,300).data; let rx=-1, ry=[];
+  for(let py=0;py<300;py+=3)for(let px=0;px<300;px+=3){if(img[(py*300+px)*4+3]>140)samples.push([px,py])}
+  // right-most column of ink = where the pen starts
+  for(let px=299;px>=0&&rx<0;px--){for(let py=0;py<300;py++)if(img[(py*300+px)*4+3]>140)ry.push(py); if(ry.length)rx=px}
+  const sy=ry.length?ry[Math.floor(ry.length/2)]:150;
+  glyphSpec={text,size,x,y}; paintGlyphGuide();
+  const mx=Math.min(rx+16,286); marker(mx,sy,180,mx-24,sy,1);
+  demoSpec={type:"glyph",y};
+  $("baseLine").setAttribute("y1",y);$("baseLine").setAttribute("y2",y);
+}
+
+// ---- Demo: chalk writes the shape, then fades to reveal the guide
+function playDemo(){
+  const tok=++animToken; demo.innerHTML=""; paintGlyphDemo(null); fade(D(),1,0);
+  fade(G(),.2,0); setHint("Qarang: qanday yoziladi…"); hideResult();
+  if(!glyphMode){$("baseLine").setAttribute("y1",200);$("baseLine").setAttribute("y2",200)}
+  const done=()=>setTimeout(()=>{ if(tok!==animToken)return;
+      fade(D(),0,.8); fade(G(),1,.8);
+      setHint("Endi barmog‘ingiz bilan xira chiziq ustidan yozing");},reduce?200:700);
+  if(demoSpec.type==="glyph"){
+    const pen=el("circle",{r:7,cy:demoSpec.y-20,cx:300,fill:"#ffd45c",opacity:.95},demo);
+    demo.parentNode.appendChild(demo);
+    if(reduce){paintGlyphDemo(0);pen.remove();done();return}
+    const dur=1600+glyphSpec.text.length*350, t0=performance.now();
+    const step=now=>{ if(tok!==animToken)return; const k=Math.min(1,(now-t0)/dur), x=290-280*k;
+      paintGlyphDemo(x); pen.setAttribute("cx",x);
+      if(k<1)requestAnimationFrame(step); else {pen.remove();paintGlyphDemo(0);done()} };
+    setTimeout(()=>requestAnimationFrame(step),300); return;
+  }
+  const l=demoSpec.l, paths=l.p.map(d=>{const p=el("path",{d,fill:"none",stroke:"#f5f2e7","stroke-width":13,"stroke-linecap":"round","stroke-linejoin":"round"},demo);
+    const len=p.getTotalLength();p.style.strokeDasharray=len;p.style.strokeDashoffset=len;return {p,len}});
+  const pen=el("circle",{r:7,fill:"#ffd45c",opacity:0},demo);
+  const finish=()=>{ if(tok!==animToken)return; pen.remove(); l.d.forEach(([x,y])=>el("circle",{cx:x,cy:y,r:8,fill:"#f5f2e7"},demo)); done() };
+  if(reduce){paths.forEach(o=>o.p.style.strokeDashoffset=0);finish();return}
+  let k=0;
+  const run=()=>{ if(tok!==animToken)return; if(k>=paths.length){finish();return}
+    const {p,len}=paths[k], dur=Math.max(500,len*4.2), t0=performance.now(); pen.setAttribute("opacity",1);
+    const step=now=>{ if(tok!==animToken)return; const t=Math.min(1,(now-t0)/dur), e=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+      p.style.strokeDashoffset=len*(1-e); const q=p.getPointAtLength(len*e); pen.setAttribute("cx",q.x); pen.setAttribute("cy",q.y);
+      if(t<1)requestAnimationFrame(step); else {k++; setTimeout(run,250)} };
+    requestAnimationFrame(step); };
+  setTimeout(run,300);
+}
+function setHint(t){$("hint").textContent=t;$("hint").style.opacity=t?1:0}
+
+// ---- Drawing canvas (coordinates in viewBox units)
+function fit(){const r=cv.getBoundingClientRect(), dpr=window.devicePixelRatio||1;
+  [cv,gcv,dcv].forEach(c=>{c.width=Math.round(r.width*dpr); c.height=Math.round(r.height*dpr)}); scale=cv.width/300; redraw(); paintGlyphGuide()}
+function toVB(e){const r=cv.getBoundingClientRect();return [(e.clientX-r.left)*300/r.width,(e.clientY-r.top)*300/r.height]}
+function styleCtx(){ctx.setTransform(scale,0,0,scale,0,0);ctx.strokeStyle="#ffd45c";ctx.fillStyle="#ffd45c";ctx.lineWidth=12;ctx.lineCap="round";ctx.lineJoin="round";ctx.shadowColor="rgba(255,212,92,.45)";ctx.shadowBlur=3*scale}
+function redraw(){ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,cv.width,cv.height);styleCtx();
+  strokes.forEach(s=>{ctx.beginPath();ctx.arc(s[0][0],s[0][1],6,0,7);ctx.fill();ctx.beginPath();ctx.moveTo(s[0][0],s[0][1]);s.forEach(p=>ctx.lineTo(p[0],p[1]));ctx.stroke()})}
+cv.addEventListener("pointerdown",e=>{e.preventDefault();cv.setPointerCapture(e.pointerId);
+  animToken++; fade(D(),0,.3); fade(G(),1,.3);
+  drawing=true;hideResult();setHint("");last=toVB(e);strokes.push([last]);userPts.push(last);
+  styleCtx();ctx.beginPath();ctx.arc(last[0],last[1],6,0,7);ctx.fill()});
+cv.addEventListener("pointermove",e=>{if(!drawing)return;const p=toVB(e);
+  styleCtx();ctx.beginPath();ctx.moveTo(last[0],last[1]);ctx.lineTo(p[0],p[1]);ctx.stroke();
+  strokes[strokes.length-1].push(p);userPts.push(p);last=p});
+["pointerup","pointercancel","pointerleave"].forEach(t=>cv.addEventListener(t,()=>drawing=false));
+function clearInk(){strokes=[];userPts=[];redraw();hideResult()}
+
+// ---- Check: how much of the guide is covered, and how much ink stays on it
+function check(){
+  if(userPts.length<3){showResult("","Avval xira chiziq ustidan yozing");return}
+  const img=ctx.getImageData(0,0,cv.width,cv.height).data, Wd=cv.width, H=cv.height, R=glyphMode?10:13, near=glyphMode?14:22;
+  const inkAt=(x,y)=>{for(let dx=-R;dx<=R;dx+=3)for(let dy=-R;dy<=R;dy+=3){if(dx*dx+dy*dy>R*R)continue;
+    const px=Math.round((x+dx)*scale), py=Math.round((y+dy)*scale); if(px<0||py<0||px>=Wd||py>=H)continue;
+    if(img[(py*Wd+px)*4+3]>60)return true}return false};
+  const cover=samples.filter(([x,y])=>inkAt(x,y)).length/samples.length;
+  const prec=userPts.filter(([x,y])=>samples.some(([sx,sy])=>(sx-x)**2+(sy-y)**2<near*near)).length/userPts.length;
+  const [a3,b3,a2,b2,a1]=glyphMode?[.72,.8,.5,.65,.3]:[.85,.8,.65,.65,.4];
+  let n=0, msg="Yana bir bor urinib ko‘ring — chiziqqa yaqinroq yozing";
+  if(cover>=a3&&prec>=b3){n=3;msg="Barakalla! A’lo yozdingiz"}
+  else if(cover>=a2&&prec>=b2){n=2;msg="Yaxshi! Biroz aniqroq bo‘lsa — a’lo"}
+  else if(cover>=a1){n=1;msg=cover<a2?"Chiziqning hammasini to‘ldiring":"Chiziqdan chiqib ketmang"}
+  const k=key(); if(n>(stars[k]||0)){stars[k]=n;saveStars();paintStars(); if(mode==="L"){const s=$("forms").querySelector(`[data-f="${form}"] .st`); if(s)s.textContent="★".repeat(n)}}
+  showResult("★".repeat(n)+"☆".repeat(3-n),`${msg} · ${Math.round(cover*100)}%`);
+  if(n===3&&!reduce)burst();
+}
+function burst(){const b=$("board");for(let i=0;i<14;i++){const s=document.createElement("span");s.className="burst";s.textContent="★";
+  const a=i/14*Math.PI*2, d=90+Math.random()*50; s.style.setProperty("--dx",Math.cos(a)*d+"px"); s.style.setProperty("--dy",Math.sin(a)*d+"px");
+  b.appendChild(s); setTimeout(()=>s.remove(),1100)}}
+function showResult(s,m){const r=$("result");r.innerHTML=(s?`<div class="stars">${s}</div>`:"")+`<div>${m}</div>`;r.hidden=false}
+function hideResult(){$("result").hidden=true}
+
+// ---- Pronunciation (Arabic voice if the phone has one)
+function speak(){ if(!("speechSynthesis" in window))return;
+  speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(mode==="L"?L[idx].ar:W[widx][0]); u.lang="ar-SA"; u.rate=.8;
+  const v=speechSynthesis.getVoices().find(v=>/^ar/i.test(v.lang)); if(v)u.voice=v; speechSynthesis.speak(u)}
+
+// ---- Navigation: in letters, Next walks through the 4 forms, then the next letter
+function step(dir){
+  if(mode==="W"){widx=(widx+dir+W.length)%W.length}
+  else{form+=dir; if(form>3){form=0;idx=(idx+1)%L.length} if(form<0){form=3;idx=(idx-1+L.length)%L.length}}
+  render();
+}
+$("listen").onclick=speak; $("show").onclick=()=>{clearInk();playDemo()}; $("clear").onclick=clearInk; $("check").onclick=check;
+$("prev").onclick=()=>step(-1); $("next").onclick=()=>step(1);
+$("mLetters").onclick=()=>{if(mode!=="L"){mode="L";buildStrip();render()}};
+$("mWords").onclick=()=>{if(mode!=="W"){mode="W";buildStrip();render()}};
+new ResizeObserver(fit).observe(cv);
+buildStrip();
+(document.fonts?document.fonts.load("700 100px Amiri").catch(()=>{}):Promise.resolve()).then(render);
+</script>
+
+</body>
+</html>
