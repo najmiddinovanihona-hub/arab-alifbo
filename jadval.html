@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Arab alifbosi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Rubik:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#F2F4F7; --surface:#FFFFFF; --ink:#16233A; --muted:#5B6678; --line:#D9DEE7;
+  --lapis:#1F4E9E; --gold:#A87622; --tile-hover:#E8EEF8;
+  --f-ar:"Amiri","Noto Naskh Arabic","Traditional Arabic",serif;
+  --f-ui:"Rubik",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0E1420; --surface:#162033; --ink:#E6EBF3; --muted:#9AA6BA; --line:#2A3650;
+  --lapis:#7FA6F0; --gold:#E0B25A; --tile-hover:#1E2B44; color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 48px}
+.wrap{max-width:1080px;margin:0 auto;display:grid;gap:24px}
+header{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px 24px}
+h1{font-size:2rem;margin:0;line-height:1.1;text-wrap:balance}
+h1 .ar{font-family:var(--f-ar);color:var(--lapis);font-weight:700;margin-inline-start:.4em}
+.lede{margin:.35rem 0 0;color:var(--muted);max-width:60ch}
+.legend{font-size:.8rem;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-inline-end:6px;vertical-align:-1px;background:var(--gold)}
+.main{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:24px;align-items:start}
+@media (max-width:820px){.main{grid-template-columns:minmax(0,1fr)}}
+.grid{direction:rtl;display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.tile{direction:ltr;all:unset;box-sizing:border-box;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:6px;
+  padding:10px 6px 8px;display:grid;justify-items:center;gap:2px;position:relative;transition:background .15s}
+.tile:hover{background:var(--tile-hover)}
+.tile:focus-visible{outline:2px solid var(--lapis);outline-offset:2px}
+.tile[aria-pressed="true"]{border-color:var(--lapis);box-shadow:inset 0 0 0 1px var(--lapis)}
+.tile .n{position:absolute;top:4px;left:7px;font-size:.68rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.tile .g{font-family:var(--f-ar);font-size:2.4rem;line-height:1.25}
+.tile .nm{font-size:.82rem;font-weight:500}
+.tile .tr{font-size:.72rem;color:var(--muted)}
+.tile.nc::after{content:"";position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:2px;background:var(--gold)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;position:sticky;top:16px;display:grid;gap:16px}
+.card .big{font-family:var(--f-ar);font-size:6.5rem;line-height:1.1;text-align:center;color:var(--lapis)}
+.card h2{margin:0;font-size:1.3rem;text-align:center}
+.card .snd{text-align:center;color:var(--muted);margin-top:-10px}
+.forms{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;direction:rtl}
+.forms div{direction:ltr;border:1px solid var(--line);border-radius:6px;text-align:center;padding:6px 2px}
+.forms b{display:block;font-family:var(--f-ar);font-size:2rem;font-weight:400;line-height:1.3}
+.forms small{font-size:.7rem;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.ex{border-top:1px solid var(--line);padding-top:14px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ex .w{font-family:var(--f-ar);font-size:2.2rem;line-height:1.2}
+.ex .m{font-size:.9rem}.ex .m i{color:var(--muted);font-style:normal;display:block;font-size:.8rem}
+.note{font-size:.82rem;color:var(--muted);margin:0}
+.nav{display:flex;gap:8px}
+button.btn{font:inherit;font-size:.88rem;cursor:pointer;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:6px;padding:7px 12px;flex:1}
+button.btn.primary{background:var(--lapis);border-color:var(--lapis);color:var(--surface);font-weight:500}
+button.btn:focus-visible{outline:2px solid var(--lapis);outline-offset:2px}
+.links{font-size:.85rem}
+.links a{color:var(--lapis)}
+@media (prefers-reduced-motion:reduce){.tile{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Arab alifbosi<span class="ar">الأبجدية</span></h1>
+      <p class="lede">28 harf, o‘ngdan chapga o‘qiladi. Harfni bosing: uning so‘z boshi, o‘rtasi va oxiridagi shakllari, talaffuzi va misol so‘zi ochiladi.</p>
+      <p class="links"><a href="./">Yozish doskasiga o‘tish →</a></p>
+    </div>
+    <div class="legend"><span>Keyingi harfga ulanmaydi</span></div>
+  </header>
+  <div class="main">
+    <div class="grid" id="grid" role="group" aria-label="Harflar"></div>
+    <aside class="card" id="card" aria-live="polite"></aside>
+  </div>
+</div>
+
+<script>
+const L=[
+ ["ا","Alif","a / ā",1,"أسد","asad","sher"],
+ ["ب","Bā","b",0,"باب","bāb","eshik"],
+ ["ت","Tā","t",0,"تمر","tamr","xurmo"],
+ ["ث","Sā","s (ingliz th)",0,"ثلج","salj","qor"],
+ ["ج","Jīm","j",0,"جمل","jamal","tuya"],
+ ["ح","Ḥā","h (bo‘g‘izdan)",0,"حليب","ḥalīb","sut"],
+ ["خ","Xā","x",0,"خبز","xubz","non"],
+ ["د","Dāl","d",1,"دار","dār","uy"],
+ ["ذ","Zāl","z (ingliz th)",1,"ذهب","zahab","oltin"],
+ ["ر","Rā","r",1,"رمان","rummān","anor"],
+ ["ز","Zāy","z",1,"زيت","zayt","yog‘"],
+ ["س","Sīn","s",0,"سمك","samak","baliq"],
+ ["ش","Shīn","sh",0,"شمس","shams","quyosh"],
+ ["ص","Ṣād","s (qalin)",0,"صبر","ṣabr","sabr"],
+ ["ض","Ḍād","d (qalin)",0,"ضوء","ḍaw’","nur, yorug‘lik"],
+ ["ط","Ṭā","t (qalin)",0,"طالب","ṭālib","talaba"],
+ ["ظ","Ẓā","z (qalin)",0,"ظل","ẓill","soya"],
+ ["ع","‘Ayn","‘ (bo‘g‘iz tovushi)",0,"عين","‘ayn","ko‘z"],
+ ["غ","G‘ayn","g‘",0,"غيم","g‘aym","bulut"],
+ ["ف","Fā","f",0,"فيل","fīl","fil"],
+ ["ق","Qāf","q",0,"قلم","qalam","qalam"],
+ ["ك","Kāf","k",0,"كتاب","kitāb","kitob"],
+ ["ل","Lām","l",0,"لبن","laban","qatiq"],
+ ["م","Mīm","m",0,"ماء","mā’","suv"],
+ ["ن","Nūn","n",0,"نور","nūr","nur"],
+ ["ه","Hā","h (yengil)",0,"هلال","hilāl","yangi oy"],
+ ["و","Wāw","v / ū",1,"ورد","ward","gul"],
+ ["ي","Yā","y / ī",0,"يد","yad","qo‘l"]
+];
+const Z="‍", grid=document.getElementById("grid"), card=document.getElementById("card");
+let cur=0;
+function forms(l){const g=l[0];return l[3]?[g,g,Z+g,Z+g]:[g,g+Z,Z+g+Z,Z+g]}
+L.forEach((l,i)=>{
+  const b=document.createElement("button");
+  b.className="tile"+(l[3]?" nc":"");b.id="t"+i;b.setAttribute("aria-pressed","false");
+  b.setAttribute("aria-label",l[1]+", "+l[2]);
+  b.innerHTML=`<span class="n">${i+1}</span><span class="g" lang="ar">${l[0]}</span><span class="nm">${l[1]}</span><span class="tr">${l[2].split(" (")[0]}</span>`;
+  b.onclick=()=>show(i);grid.appendChild(b);
+});
+function speak(t){try{const u=new SpeechSynthesisUtterance(t);u.lang="ar-SA";u.rate=.8;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function show(i){
+  cur=(i+L.length)%L.length;const l=L[cur],f=forms(l);
+  document.querySelectorAll(".tile").forEach((t,k)=>t.setAttribute("aria-pressed",k===cur));
+  const lab=["Alohida","Boshida","O‘rtada","Oxirida"];
+  card.innerHTML=`
+   <div class="big" lang="ar">${l[0]}</div>
+   <h2>${cur+1}. ${l[1]}</h2>
+   <div class="snd">Tovushi: ${l[2]}</div>
+   <div class="forms">${f.map((x,k)=>`<div><b lang="ar">${x}</b><small>${lab[k]}</small></div>`).join("")}</div>
+   ${l[3]?'<p class="note">Bu harf o‘zidan keyingi harfga ulanmaydi, shuning uchun boshida va o‘rtada ham alohida shaklda yoziladi.</p>':''}
+   <div class="ex"><div class="m"><b>${l[5]}</b> — ${l[6]}<i>Misol so‘z</i></div><div class="w" lang="ar">${l[4]}</div></div>
+   <div class="nav">
+     <button class="btn" id="prev">← Oldingi</button>
+     <button class="btn primary" id="say">Tinglash</button>
+     <button class="btn" id="next">Keyingi →</button>
+   </div>`;
+  document.getElementById("prev").onclick=()=>show(cur-1);
+  document.getElementById("next").onclick=()=>show(cur+1);
+  document.getElementById("say").onclick=()=>speak(l[4]);
+}
+show(0);
+</script>
+</body>
+</html>
